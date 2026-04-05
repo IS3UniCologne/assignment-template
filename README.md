@@ -24,6 +24,12 @@ This will create a `.venv` directory and register the Python kernel so Quarto ca
 ### 3. Rendering the Report
 To generate the final report in different formats, use `uv run` to ensure Quarto uses the correct environment:
 
+  ```bash
+  uv run quarto render report.qmd
+  ```
+
+This will render all formats as specified in `_quarto.yml`. If you want to render individual formats, use the `--to` argument:
+
 - **PDF (Final Submission)**:
   ```bash
   uv run quarto render report.qmd --to pdf
@@ -44,14 +50,17 @@ This is also useful for clearing out build artifacts if you want to perform a co
 
 ## 📂 Project Structure
 - `report.qmd`: The main document where you write your report.
+- `sections/`: Sections to include in the main report.
 - `notebooks/`: A directory for your exploratory analysis (`.ipynb` files).
 - `assets/`: Put your images and logos here.
 - `references.bib`: Manage your citations in BibLaTeX format.
 - `_quarto.yml`: Project configuration and styling.
-- `partials/`: Custom LaTeX styling (locked to ensure consistent formatting).
+- `pyproject.toml`: Project dependency management (use `uv`).
+- `partials/`: Custom LaTeX styling (you shouldn't need to touch this).
+- `docs/`: The output directory, where your `report.pdf` lives.
 
 ## 💡 Key Features
-- **Strict Formatting**: The PDF output enforces a 4cm left margin and 1.5 line spacing to meet submission requirements.
+- **Strict Formatting**: The PDF output enforces a 2.5cm margin all around and single line spacing to meet submission requirements.
 - **Integrated Analysis**: You can write Python code directly in `report.qmd`.
 - **Code Folding**: In the HTML version, code blocks are folded by default to keep the focus on your writing.
 - **Margin Content**: Use `#| column: margin` to place small plots or code snippets in the right margin.
@@ -65,5 +74,5 @@ Your final submission must include:
 3. The `pyproject.toml` and `uv.lock` files to ensure reproducibility.
 
 ---
-*Department of Information Systems for Sustainable Society (IS3)*  
+*Chair of Information Systems for Sustainable Society (IS3)*  
 *University of Cologne*
